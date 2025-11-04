@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrizleFans - Your Favorite Bad Teacher</title>
+    
+    <!-- Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons --><script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Google Font: Inter --><link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Dark gray background */
+        }
+        
+        .hero-bg {
+            background-color: #1f2937; /* Darker blue-gray fallback */
+            /* Removed static background-image */
+            background-size: cover;
+            background-position: center;
+            position: relative; /* For pseudo-elements */
+            overflow: hidden; /* Hide blur edges */
+        }
+
+        /* Container must be on top of the pseudo-elements */
+        #home .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Shared styles for both background pseudo-elements */
+        .hero-bg::before,
+        .hero-bg::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1; /* Below container */
+            
+            background-size: cover;
+            background-position: center;
+            
+            /* Apply the gradient overlay, blur, and scale */
+            filter: blur(8px);
+            transform: scale(1.1); /* Prevents blurred edges from showing */
+            
+            /* Transition for the crossfade */
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        /* 'before' holds the primary image */
+        .hero-bg::before {
+            background-image: linear-gradient(to bottom, rgba(31, 41, 55, 0.8), rgba(17, 24, 39, 0.9)), 
+                              var(--hero-bg-image);
+            opacity: 1;
+        }
+        
+        /* 'after' holds the next image (initially hidden) */
+        .hero-bg::after {
+            background-image: linear-gradient(to bottom, rgba(31, 41, 55, 0.8), rgba(17, 24, 39, 0.9)), 
+                              var(--hero-bg-image-next);
+            opacity: 0;
+        }
+
+        /* When 'fade-bg' class is added, fade 'after' in and 'before' out */
+        .hero-bg.fade-bg::before {
+            opacity: 0;
+        }
+        .hero-bg.fade-bg::after {
+            opacity: 1;
+        }
+
+
+        /* Hide number input arrows */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        /* Blurred image style for locked album cover */
+        .blurred-album-image {
+            filter: blur(5px); /* Apply a blur */
+            transition: filter 0.3s ease-in-out;
+        }
+
+        .blurred-album-overlay {
+            background-color: rgba(0, 0, 0, 0.3); /* Slightly darker overlay */
+            transition: background-color 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="text-gray-300">
+
+    <!-- Header --><header id="site-header" class="bg-gray-900 bg-opacity-80 backdrop-blur-md text-white fixed w-full z-40 top-0 shadow-lg">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="flex items-center">
+                <img 
+                    src="https://i.imgur.com/9JoHkRu.jpg" 
+                    alt="FrizleFans Logo"
+                    class="h-8 md:h-10 object-contain"
+                    onerror="this.src='https://placehold.co/100x40/6366f1/white?text=FF'"
+                >
+            </a>
+            
+            <!-- Desktop Nav --><div class="hidden md:flex space-x-6">
+                <a href="#home" class="hover:text-indigo-400 transition duration-300">Home</a>
+                <a href="#premium" class="hover:text-indigo-400 transition duration-300">Premium</a>
+                <a href="#gallery" class="hover:text-indigo-400 transition duration-300">Gallery</a>
+                <!-- Removed About Link -->
+                <a href="#contact" class="hover:text-indigo-400 transition duration-300">Contact</a>
+            </div>
+            
+            <!-- Mobile Menu Button --><button id="menu-btn" class="md:hidden focus:outline-none">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </nav>
+        
+        <!-- Mobile Menu --><div id="mobile-menu" class="hidden md:hidden">
+            <a href="#home" class="block py-2 px-6 text-sm hover:bg-gray-800">Home</a>
+            <a href="#premium" class="block py-2 px-6 text-sm hover:bg-gray-800">Premium</a>
+            <a href="#gallery" class="block py-2 px-6 text-sm hover:bg-gray-800">Gallery</a>
+            <!-- Removed About Link -->
+            <a href="#contact" class="block py-2 px-6 text-sm hover:bg-gray-800">Contact</a>
+        </div>
+    </header>
+
+    <!-- Main Content --><!-- Add 'pt-16' to main to offset fixed header --><main id="site-main" class="pt-16">
+        
+        <!-- Hero Section --><section id="home" class="hero-bg text-white pt-20 pb-24 md:pt-32 md:pb-36">
+            <div class="container mx-auto px-6 text-center"> <!-- This container needs z-index -->
+                <p class="text-2xl md:text-3xl font-bold mb-4">Class is now in session.</p>
+                <img 
+                    src="https://i.imgur.com/cEN5IIh.jpg" 
+                    alt="FrizleFans Profile Image"
+                    class="w-40 h-40 rounded-full mx-auto mb-8 border-4 border-white shadow-lg object-cover"
+                    onerror="this.src='https://placehold.co/160x160/6366f1/white?text=FF'"
+                >
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">
+                    <img 
+                        src="https://i.imgur.com/9JoHkRu.jpg" 
+                        alt="FrizleFans Logo"
+                        class="h-20 md:h-24 mx-auto object-contain"
+                        onerror="this.src='https://placehold.co/200x80/6366f1/white?text=FrizleFans'"
+                    >
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+                    your favorite bad teacher
+                </p>
+            </div>
+        </section>
+
+        <!-- Premium Section (MOVED) --><section id="premium" class="py-20 md:py-28 bg-gray-900">
+            <div class="container mx-auto px-6 max-w-3xl">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Premium Access</h2>
+                    <p class="text-lg text-gray-400 max-w-lg mx-auto">Get the password for all exclusive photo albums.</p>
+                </div>
+                
+                <div class="text-center">
+                    <a 
+                        href="https://www.paypal.com/paypalme/madammilf86" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        class="inline-block bg-indigo-500 text-white font-medium px-8 py-3 rounded-lg hover:bg-indigo-600 transition duration-300 shadow-md text-lg"
+                    >
+                        $15 for password
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Gallery Section --><section id="gallery" class="py-20 md:py-28 bg-gray-800"> <!-- Changed bg color for contrast -->
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Gallery</h2>
+                    <p class="text-lg text-gray-400 max-w-2xl mx-auto">Browse the photo albums.</p>
+                </div>
+                
+                <!-- Album Grid --><div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-4xl mx-auto">
+                    
+                    <!-- B&W Album --><a href="#" id="bw-album-trigger" class="group relative rounded-lg overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://i.imgur.com/Ug24AAP.jpg" alt="Black and White Album" class="w-full h-80 object-cover blurred-album-image" onerror="this.src='https://placehold.co/600x400/111827/4b5563?text=B%26W'"/>
+                        <div class="absolute inset-0 bg-black bg-opacity-60 flex flex-col items-center justify-center p-6 text-center blurred-album-overlay">
+                            <i data-lucide="lock" class="w-12 h-12 text-white mb-4"></i>
+                            <h3 class="text-2xl font-bold text-white mb-2">Black &amp; White</h3>
+                            <p class="text-gray-300 mb-4">Password Protected</p>
+                            <span class="inline-block bg-indigo-500 text-white text-sm font-medium px-4 py-2 rounded-full group-hover:bg-indigo-600 transition-colors">
+                                Unlock Album
+                            </span>
+                        </div>
+                    </a>
+                    
+                    <!-- Color Album --><a href="#" id="color-album-trigger" class="group relative rounded-lg overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                        <img src="https://i.imgur.com/gmVe7XF.jpg" alt="Color Album" class="w-full h-80 object-cover blurred-album-image" onerror="this.src='https://placehold.co/600x400/4338ca/93c5fd?text=Color'"/>
+                        <div class="absolute inset-0 bg-black bg-opacity-60 flex flex-col items-center justify-center p-6 text-center blurred-album-overlay">
+                            <i data-lucide="lock" class="w-12 h-12 text-white mb-4"></i>
+                            <h3 class="text-2xl font-bold text-white mb-2">Color</h3>
+                            <p class="text-gray-300 mb-4">Password Protected</p>
+                            <span class="inline-block bg-indigo-500 text-white text-sm font-medium px-4 py-2 rounded-full group-hover:bg-indigo-600 transition-colors">
+                                Unlock Album
+                            </span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- B&W Gallery View (Hidden by default) --><section id="bw-gallery-view" class="py-20 md:py-28 bg-gray-900 hidden">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Black &amp; White Gallery</h2>
+                    <button class="back-to-albums-btn text-indigo-400 hover:text-indigo-300 transition duration-300">
+                        &larr; Back to Albums
+                    </button>
+                </div>
+                
+                <!-- Image Grid for B&W --><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <img src="https://i.imgur.com/4m9NY2L.jpg" alt="Gallery Image" class="w-full h-auto rounded-lg shadow-lg object-cover" onerror="this.src='https://placehold.co/600x400/ccc/333?text=Image+Not+Found'">
+                    <img src="https://i.imgur.com/cEN5IIh.jpg" alt="Gallery Image" class="w-full h-auto rounded-lg shadow-lg object-cover" onerror="this.src='https://placehold.co/600x400/ccc/333?text=Image+Not+Found'">
+                    <img src="https://i.imgur.com/uiJpJ8I.jpg" alt="Gallery Image" class="w-full h-auto rounded-lg shadow-lg object-cover" onerror="this.src='https://placehold.co/600x400/ccc/333?text=Image+Not+Found'">
+                    <img src="https://i.imgur.com/Ug24AAP.jpg" alt="Gallery Image" class="w-full h-auto rounded-lg shadow-lg object-cover" onerror="this.src='https://placehold.co/600x400/ccc/333?text=Image+Not+Found'">
+                    <img src="https://i.imgur.com/HtY2TyY.jpg" alt="Gallery Image" class="w-full h-auto rounded-lg shadow-lg object-cover" onerror="this.src='https://placehold.co/600x400/ccc/333?text=Image+Not+Found'">
+                    <img src="https://i.imgur.com/RzsIQ1A.jpg" alt="Gallery Image" class="w-full h-auto rounded-lg shadow-lg object-cover" onerror="this.src='https://placehold.co/600x400/ccc/333?text=Image+Not+Found'">
+                    <img src="https://i.imgur.com/qorYogw.jpg" alt="Gallery Image" class="w-full h-auto rounded-lg shadow-lg object-cover" onerror="this.src='https://placehold.co/600x400/ccc/333?text=Image+Not+Found'">
+                    <img src="https://i.imgur.com/v6h74xa.jpg" alt="Gallery Image" class="w-full h-auto rounded-lg shadow-lg object-cover" onerror="this.src='https://placehold.co/600x400/ccc/333?text=Image+Not+Found'">
+                    <img src="https://i.imgur.com/sv6n1En.jpg" alt="Gallery Image" class="w-full h-auto rounded-lg shadow-lg object-cover" onerror="this.src='https://placehold.co/600x400/ccc/333?text=Image+Not+Found'">
+                    <img src="https://i.imgur.com/a74FtIL.jpg" alt="Gallery Image" class="w-full h-auto rounded-lg shadow-lg object-cover" onerror="this.src='https://placehold.co/600x400/ccc/333?text=Image+Not+Found'">
+                    <img src="https://i.imgur.com/31ebtB8.jpg" alt="Gallery Image" class="w-full h-auto rounded-lg shadow-lg object-cover" onerror="this.src='https://placehold.co/600x400/ccc/333?text=Image+Not+Found'">
+                    <img src="https://i.imgur.com/vwNxd6i.jpg" alt="Gallery Image" class="w-full h-auto rounded-lg shadow-lg object-cover" onerror="this.src='httpss://placehold.co/600x400/ccc/333?text=Image+Not+Found'">
+                    <img src="https://i.imgur.com/LZe2pXn.jpg" alt="Gallery Image" class="w-full h-auto rounded-lg shadow-lg object-cover" onerror="this.src='httpss://placehold.co/600x400/ccc/333?text=Image+Not+Found'">
+                    <img src="https://i.imgur.com/pAeNUUZ.jpg" alt="Gallery Image" class="w-full h-auto rounded-lg shadow-lg object-cover" onerror="this.src='https://placehold.co/600x400/ccc/333?text=Image+Not+Found'">
+                    <img src="https://i.imgur.com/WWASTfd.jpg" alt="Gallery Image" class="w-full h-auto rounded-lg shadow-lg object-cover" onerror="this.src='https://placehold.co/600x400/ccc/333?text=Image+Not+Found'">
+                    <img src="https://i.imgur.com/luPi0lb.jpg" alt="Gallery Image" class="w-full h-auto rounded-lg shadow-lg object-cover" onerror="this.src='https://placehold.co/600x400/ccc/333?text=Image+Not+Found'">
+                </div>
+            </div>
+        </section>
+        
+        <!-- Color Gallery View (Hidden by default) --><section id="color-gallery-view" class="py-20 md:py-28 bg-gray-900 hidden">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Color Gallery</h2>
+                    <button class="back-to-albums-btn text-indigo-400 hover:text-indigo-300 transition duration-300">
+                        &larr; Back to Albums
+                    </button>
+                </div>
+
+                <!-- Image Grid for Color --><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- The 13 new color images --><img src="https://i.imgur.com/gmVe7XF.jpg" alt="Gallery Image 4" class="w-full h-auto rounded-lg shadow-lg object-cover" onerror="this.src='https://placehold.co/600x400/ccc/333?text=Image+Not+Found'">
+                    <img src="https://i.imgur.com/7qzG5BA.jpg" alt="Gallery Image 5" class="w-full h-auto rounded-lg shadow-lg object-cover" onerror="this.src='https://placehold.co/600x400/ccc/333?text=Image+Not+Found'">
+                    <img src="https://i.imgur.com/ruSE9Hg.jpg" alt="Gallery Image 6" class="w-full h-auto rounded-lg shadow-lg object-cover" onerror="this.src='https://placehold.co/600x400/ccc/333?text=Image+Not+Found'">
+                    <img src="https://i.imgur.com/oSutEh5.jpg" alt="Gallery Image 7" class="w-full h-auto rounded-lg shadow-lg object-cover" onerror="this.src='https://placehold.co/600x400/ccc/333?text=Image+Not+Found'">
+                    <img src="https://i.imgur.com/vH5pKTg.jpg" alt="Gallery Image 8" class="w-full h-auto rounded-lg shadow-lg object-cover" onerror="this.src='httpss://placehold.co/600x400/ccc/333?text=Image+Not+Found'">
+                    <img src="https://i.imgur.com/6pQqF3r.jpg" alt="Gallery Image 9" class="w-full h-auto rounded-lg shadow-lg object-cover" onerror="this.src='httpss://placehold.co/600x400/ccc/333?text=Image+Not+Found'">
+                    <img src="https://i.imgur.com/ZuyCjeG.jpg" alt="Gallery Image 10" class="w-full h-auto rounded-lg shadow-lg object-cover" onerror="this.src='https://placehold.co/600x400/ccc/333?text=Image+Not+Found'">
+                    <img src="https://i.imgur.com/sBjkADb.jpg" alt="Gallery Image 11" class="w-full h-auto rounded-lg shadow-lg object-cover" onerror="this.src='httpss://placehold.co/600x400/ccc/333?text=Image+Not+Found'">
+                    <img src="https://i.imgur.com/2shyqKp.jpg" alt="Gallery Image 12" class="w-full h-auto rounded-lg shadow-lg object-cover" onerror="this.src='httpshttps://placehold.co/600x400/ccc/333?text=Image+Not+Found'">
+                    <img src="https://i.imgur.com/vpJvifH.jpg" alt="Gallery Image 13" class="w-full h-auto rounded-lg shadow-lg object-cover" onerror="this.src='httpss://placehold.co/600x400/ccc/333?text=Image+Not+Found'">
+                    <img src="https://i.imgur.com/MMcbLnA.jpg" alt="Gallery Image 14" class="w-full h-auto rounded-lg shadow-lg object-cover" onerror="this.src='httpss://placehold.co/600x400/ccc/333?text=Image+Not+Found'">
+                    <img src="https://i.imgur.com/Vnz0Q4I.jpg" alt="Gallery Image 15" class="w-full h-auto rounded-lg shadow-lg object-cover" onerror="this.src='httpss://placehold.co/600x400/ccc/333?text=Image+Not+Found'">
+                    <img src="https://i.imgur.com/uWMHQEn.jpg" alt="Gallery Image 16" class="w-full h-auto rounded-lg shadow-lg object-cover" onerror="this.src='https://placehold.co/600x400/ccc/333?text=Image+Not+Found'">
+                </div>
+            </div>
+        </section>
+
+        <!-- Password Prompt View (Hidden by default) --><section id="password-prompt-view" class="py-20 md:py-28 bg-gray-900 hidden">
+            <div class="container mx-auto px-6 max-w-lg">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Password Required</h2>
+                    <p class="text-lg text-gray-400">This album is protected. Please enter the password.</p>
+                </div>
+
+                <form id="password-form" class="bg-gray-800 p-8 md:p-12 rounded-lg shadow-2xl">
+                    <label for="password" class="block text-sm font-medium text-gray-300 mb-2 text-center">Password</label>
+                    <input type="password" id="password" name="password" class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-indigo-400" placeholder="Enter password" required>
+                    
+                    <p id="password-error" class="text-red-400 text-sm text-center mt-3 hidden">Incorrect password. Please try again.</p>
+                    
+                    <button type="submit" class="w-full bg-indigo-500 text-white font-medium px-8 py-3 rounded-lg hover:bg-indigo-600 transition duration-300 shadow-md mt-6">
+                        Unlock Album
+                    </button>
+                </form>
+
+                <div class="text-center mt-8">
+                    <button class="back-to-albums-btn text-indigo-400 hover:text-indigo-300 transition duration-300">
+                        &larr; Back to Albums
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section REMOVED -->
+
+        <!-- Contact Section --><section id="contact" class="py-20 md:py-28 bg-gray-800"> <!-- Changed bg color for contrast -->
+            <div class="container mx-auto px-6 max-w-3xl">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Contact Me</h2>
+                    <p class="text-lg text-gray-400 max-w-lg mx-auto">The best way to reach me is directly on Telegram. Send me a message, and I'll get back to you!</p>
+                </div>
+                
+                <div class="text-center">
+                    <a 
+                        href="https://t.me/msfrizle" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        class="inline-block bg-indigo-500 text-white font-medium px-8 py-3 rounded-lg hover:bg-indigo-600 transition duration-300 shadow-md text-lg"
+                    >
+                        Get in touch
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer --><footer class="bg-gray-900 border-t border-gray-700 py-12">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex justify-center space-x-6 mb-6">
+                
+                <!-- TikTok --><a href="https://www.tiktok.com/@msfrizle" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-indigo-400 transition duration-300">
+                    <i data-lucide="tiktok" class="w-6 h-6"></i>
+                    <span class="sr-only">TikTok</span>
+                </a>
+                
+                <!-- Instagram --><a href="https://www.instagram.com/msfrizle/?igsh=MWc1eWcxMzRibTc1ZQ%3D%3D" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-indigo-400 transition duration-300">
+                    <i data-lucide="instagram" class="w-6 h-6"></i>
+                    <span class="sr-only">Instagram</span>
+                </a>
+                
+                <!-- Telegram --><a href="https://t.me/msfrizle" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-indigo-400 transition duration-300">
+                    <i data-lucide="send" class="w-6 h-6"></i>
+                    <span class="sr-only">Telegram</span>
+                </a>
+                
+                <!-- X (Twitter) --><a href="https://x.com/frizlemetax?s=21" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-indigo-400 transition duration-300">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                    <span class="sr-only">X (Twitter)</span> <!-- TYPO FIX: classs="sr-only" -> class="sr-only" -->
+                </a>
+                
+                <!-- PayPal --><a href="https://www.paypal.com/paypalme/madammilf86" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-indigo-400 transition duration-300">
+                    <i data-lucide="dollar-sign" class="w-6 h-6"></i>
+                    <span class="sr-only">PayPal</span>
+                </a>
+                
+                <!-- Venmo --><a href="https://venmo.com/u/msfrizle" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-indigo-400 transition duration-300">
+                    <i data-lucide="credit-card" class="w-6 h-6"></i>
+                    <span class="sr-only">Venmo</span>
+                </a>
+                
+            </div>
+            <p class="text-gray-500">&copy; 2024 FrizleFans. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Hero Background Cycler ---
+            const heroSection = document.getElementById('home');
+            if (heroSection) {
+                // Array of B&W image URLs from the gallery
+                const bwImages = [
+                    'https://i.imgur.com/4m9NY2L.jpg',
+                    'https://i.imgur.com/cEN5IIh.jpg',
+                    'https://i.imgur.com/uiJpJ8I.jpg',
+                    'https://i.imgur.com/Ug24AAP.jpg',
+                    'https://i.imgur.com/HtY2TyY.jpg',
+                    'https://i.imgur.com/RzsIQ1A.jpg',
+                    'https://i.imgur.com/qorYogw.jpg',
+                    'https://i.imgur.com/v6h74xa.jpg',
+                    'https://i.imgur.com/sv6n1En.jpg',
+                    'https://i.imgur.com/a74FtIL.jpg',
+                    'https://i.imgur.com/31ebtB8.jpg',
+                    'httpss://i.imgur.com/vwNxd6i.jpg',
+                    'httpss://i.imgur.com/LZe2pXn.jpg',
+                    'https://i.imgur.com/pAeNUUZ.jpg',
+                    'https://i.imgur.com/WWASTfd.jpg',
+                    'https://i.imgur.com/luPi0lb.jpg'
+                ];
+                
+                let currentIndex = 0;
+                let isFading = false; // To track which pseudo-element is active
+
+                const cycleBackground = () => {
+                    // Increment index and loop
+                    currentIndex = (currentIndex + 1) % bwImages.length;
+                    const nextImageUrl = bwImages[currentIndex];
+
+                    // Preload the next image
+                    const img = new Image();
+                    img.src = nextImageUrl;
+
+                    img.onload = () => {
+                        // Image is loaded, now perform the crossfade
+                        if (isFading) {
+                            // Fade to 'before'
+                            heroSection.style.setProperty('--hero-bg-image', `url(${nextImageUrl})`);
+                            heroSection.classList.remove('fade-bg'); // Triggers CSS transition
+                        } else {
+                            // Fade to 'after'
+                            heroSection.style.setProperty('--hero-bg-image-next', `url(${nextImageUrl})`);
+                            heroSection.classList.add('fade-bg'); // Triggers CSS transition
+                        }
+                        isFading = !isFading; // Toggle the state
+                    };
+                    // Handle image load error, just in case
+                    img.onerror = () => {
+                        console.warn(`Failed to load hero background image: ${nextImageUrl}`);
+                        // You could optionally just cycle again
+                        // cycleBackground(); 
+                    };
+                };
+
+                // Start the cycler
+                // Set the default/first image
+                heroSection.style.setProperty('--hero-bg-image', `url(${bwImages[0]})`);
+                // Start the loop after 5 seconds
+                setInterval(cycleBackground, 5000); // Change image every 5 seconds
+            }
+
+
+            // --- Mobile Menu Logic ---
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (menuBtn && mobileMenu) {
+                // Mobile menu toggle
+                menuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+
+                // Close mobile menu when a link is clicked
+                mobileMenu.addEventListener('click', (e) => {
+                    if (e.target.tagName === 'A') {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            }
+
+
+            // --- Gallery Logic ---
+            const bwAlbumTrigger = document.getElementById('bw-album-trigger');
+            const colorAlbumTrigger = document.getElementById('color-album-trigger');
+            const passwordForm = document.getElementById('password-form');
+            const passwordInput = document.getElementById('password');
+            const passwordError = document.getElementById('password-error');
+            
+            const mainGallery = document.getElementById('gallery');
+            const bwGalleryView = document.getElementById('bw-gallery-view');
+            const colorGalleryView = document.getElementById('color-gallery-view');
+            const passwordPromptView = document.getElementById('password-prompt-view');
+            const backToAlbumsBtns = document.querySelectorAll('.back-to-albums-btn');
+
+            const correctPassword = "BadTeacher"; // Base password
+            let albumToUnlock = null; // State to track which album to unlock
+
+            // Function to show a specific gallery view or prompt
+            function showGalleryView(viewToShow) {
+                // Hide all gallery-related sections
+                if (mainGallery) mainGallery.classList.add('hidden');
+                if (bwGalleryView) bwGalleryView.classList.add('hidden');
+                if (colorGalleryView) colorGalleryView.classList.add('hidden');
+                if (passwordPromptView) passwordPromptView.classList.add('hidden');
+                
+                // Clear password error when changing views
+                if (passwordError) {
+                    passwordError.classList.add('hidden');
+                }
+                
+                // Show the one we want
+                if (viewToShow) {
+                    viewToShow.classList.remove('hidden');
+                }
+                
+                // Scroll to the top of that section (offset for the fixed header)
+                if (viewToShow) {
+                    window.scrollTo(0, viewToShow.offsetTop - 100); 
+                }
+
+                if (viewToShow === passwordPromptView) {
+                    if (passwordInput) {
+                        passwordInput.focus();
+                    }
+                }
+            }
+
+            // Show B&W Album Password Prompt
+            if (bwAlbumTrigger) {
+                bwAlbumTrigger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    albumToUnlock = 'bw'; // Set state for B&W
+                    showGalleryView(passwordPromptView);
+                });
+            }
+
+            // Show Color Album Password Prompt
+            if (colorAlbumTrigger) {
+                colorAlbumTrigger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    albumToUnlock = 'color'; // Set state for Color
+                    showGalleryView(passwordPromptView);
+                });
+            }
+
+            // Check password
+            if (passwordForm) {
+                passwordForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    // Make check case-insensitive and trim whitespace
+                    if (passwordInput && passwordInput.value.trim().toLowerCase() === correctPassword.toLowerCase()) {
+                        // Check which album to unlock based on state
+                        if (albumToUnlock === 'bw') {
+                            showGalleryView(bwGalleryView);
+                        } else if (albumToUnlock === 'color') {
+                            showGalleryView(colorGalleryView);
+                        }
+                        passwordInput.value = ''; // Clear password on success
+                        albumToUnlock = null; // Reset state
+                    } else {
+                        if (passwordError) passwordError.classList.remove('hidden');
+                    }
+                });
+            }
+
+            // Back to Albums buttons
+            if (backToAlbumsBtns) {
+                backToAlbumsBtns.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        showGalleryView(mainGallery);
+                        if (passwordInput) {
+                            passwordInput.value = ''; // Clear password on 'back'
+                        }
+                        albumToUnlock = null; // Reset state
+                    });
+                });
+            }
+
+            // Initialize Lucide Icons
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
+

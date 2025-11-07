@@ -113,12 +113,14 @@
             </a>
             
             <!-- Desktop Nav --><div class="hidden md:flex space-x-6">
-                <a href="#home" class="hover:text-indigo-400 transition duration-300">Home</a>
-                <a href="#premium" class="hover:text-indigo-400 transition duration-300">Premium</a>
-                <a href="#gallery" class="hover:text-indigo-400 transition duration-300">Gallery</a>
-                <a href="#about" class="hover:text-indigo-400 transition duration-300">About</a>
-                <a href="#contact" class="hover:text-indigo-400 transition duration-300">Contact</a>
-          _ </div>
+    <a href="#home" class="hover:text-indigo-400 transition duration-300">Home</a>
+    <a href="#premium" class="hover:text-indigo-400 transition duration-300">Premium</a>
+    <a href="#gallery" class="hover:text-indigo-400 transition duration-300">Gallery</a>
+    <a href="#about" class="hover:text-indigo-400 transition duration-300">About</a>
+    <a href="#words" class="hover:text-indigo-400 transition duration-300">Words</a>
+    <a href="#quiz" class="hover:text-indigo-400 transition duration-300">Quiz</a> 
+    <a href="#contact" class="hover:text-indigo-400 transition duration-300">Contact</a>
+</div>
             
             <!-- Mobile Menu Button --><button id="menu-btn" class="md:hidden focus:outline-none">
                 <i data-lucide="menu" class="w-6 h-6"></i>
@@ -126,12 +128,14 @@
         </nav>
         
         <!-- Mobile Menu --><div id="mobile-menu" class="hidden md:hidden">
-            <a href="#home" class="block py-2 px-6 text-sm hover:bg-gray-800">Home</a>
-            <a href="#premium" class="block py-2 px-6 text-sm hover:bg-gray-800">Premium</a>
-            <a href="#gallery" class="block py-2 px-6 text-sm hover:bg-gray-800">Gallery</a>
-            <a href="#about" class="block py-2 px-6 text-sm hover:bg-gray-800">About</a>
-            <a href="#contact" class="block py-2 px-6 text-sm hover:bg-gray-800">Contact</a>
-        </div>
+    <a href="#home" class="block py-2 px-6 text-sm hover:bg-gray-800">Home</a>
+    <a href="#premium" class="block py-2 px-6 text-sm hover:bg-gray-800">Premium</a>
+    <a href="#gallery" class="block py-2 px-6 text-sm hover:bg-gray-800">Gallery</a>
+    <a href="#about" class="block py-2 px-6 text-sm hover:bg-gray-800">About</a>
+    <a href="#words" class="block py-2 px-6 text-sm hover:bg-gray-800">Words</a>
+    <a href="#quiz" class="block py-2 px-6 text-sm hover:bg-gray-800">Quiz</a> 
+    <a href="#contact" class="block py-2 px-6 text-sm hover:bg-gray-800">Contact</a>
+</div>
     </header>
 
     <!-- Main Content --><!-- Add 'pt-16' to main to offset fixed header --><main id="site-main" class="pt-16">
@@ -355,6 +359,17 @@
         </p>
     </div>
 </div>
+</section><section id="quiz" class="py-20 md:py-28 bg-gray-800">
+    <div class="container mx-auto px-6 max-w-2xl">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">Daily Quizzes</h2>
+            <p class="text-lg text-gray-400">Test your knowledge of my world!</p>
+        </div>
+        
+        <div id="quiz-container" class="bg-gray-900 p-8 rounded-lg shadow-2xl border border-indigo-600">
+            <p class="text-gray-400 text-center">Loading today's question...</p>
+        </div>
+    </div>
 </section>
 
         <!-- Contact Section --><section id="contact" class="py-20 md:py-28 bg-gray-800"> <!-- Changed bg color for contrast -->

@@ -620,11 +620,12 @@
             lucide.createIcons();
         });
     </script><script>
-   // --- DAILY POLL DATA ---
-const dailyPoll = {
-    question: "Were you the teacher's pet or the troublemaker?",
-    options: ["Teacher's Pet", "Troublemaker"]
-};
+    // --- DAILY POLL DATA ---
+    // CUSTOMIZED QUESTION
+    const dailyPoll = {
+        question: "Were you the teacher's pet or the troublemaker?",
+        options: ["Teacher's Pet", "Troublemaker"]
+    };
 
     const quizContainer = document.getElementById('quiz-container');
 
@@ -673,9 +674,9 @@ const dailyPoll = {
     function renderResults(votedIndex) {
         const optionsContainer = document.getElementById('options-container');
         
-        // --- PLACEHOLDER POLL RESULTS ---
-        // Manually update these numbers (e.g., [60, 40] or [50, 50]) daily 
-        const results = [55, 45]; 
+        // --- CUSTOMIZED POLL RESULTS ---
+        // Teacher's Pet (A) = 45%, Troublemaker (B) = 55%
+        const results = [45, 55]; 
         
         optionsContainer.innerHTML = dailyPoll.options.map((option, index) => {
             const result = results[index];

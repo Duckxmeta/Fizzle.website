@@ -406,64 +406,7 @@
     </div>
 </section>
 
-      <section id="shop-section" class="py-20 md:py-28 bg-gray-900 border-b border-gray-800">
-    <div class="container mx-auto px-6 max-w-4xl">
-        <div class="text-center mb-12">
-            <h2 class="text-4xl font-extrabold text-white mb-2">🔥 Mz. Fizzle's Merch Shop</h2>
-            <p class="text-xl text-indigo-400">Limited Edition Gear to Make You FIZZLE!</p>
-        </div>
-
-        <div class="flex flex-col md:flex-row gap-10 items-start bg-gray-800 p-8 rounded-xl shadow-2xl">
-            <div class="md:w-1/2">
-                <h3 class="text-3xl font-bold text-white mb-4" id="merch-title">"I'M A BAD TEACHER" Mug</h3>
-                <div class="text-2xl font-extrabold text-indigo-400 mb-6">$19.99 USD</div>
-                
-                <p class="text-gray-300 text-lg mb-6" id="merch-description">
-                    The perfect ceramic mug for your morning tea or evening wine. Featuring the iconic Mz. Fizzle quote. 
-                    Dishwasher safe and guaranteed to make you feel a little naughty. Limited stock available!
-                </p>
-                
-                <div class="bg-gray-700 h-64 w-full rounded-lg flex items-center justify-center">
-                    <span class="text-gray-400 text-sm"></span>
-                </div>
-            </div>
-
-            <div class="md:w-1/2">
-                <h3 class="text-2xl font-bold text-white mb-4">Secure Your Order</h3>
-                <p class="text-red-400 mb-4 text-sm">
-                    ⚠️ **IMPORTANT:** Complete this form first, then click the 'Pay Now' button to finalize your purchase.
-                </p>
-                
-                <form action="https://formspree.io/f/mvgdpzwz" method="POST" class="space-y-4">
-                    <input type="hidden" name="Order_Item" value="Bad Teacher Mug - $19.99">
-                    
-                    <div>
-                        <label for="shipping_name" class="block text-sm font-medium text-gray-300">Name (For Shipping Label)*</label>
-                        <input type="text" name="shipping_name" id="shipping_name" required class="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Your Name">
-                    </div>
-
-                    <div>
-                        <label for="shipping_address" class="block text-sm font-medium text-gray-300">Full Shipping Address*</label>
-                        <textarea name="shipping_address" id="shipping_address" required rows="3" class="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Street, City, State, Zip/Post Code"></textarea>
-                    </div>
-
-                    <button type="submit" class="w-full py-3 rounded-lg font-bold transition duration-300 bg-gray-700 hover:bg-gray-600 text-white shadow-lg">
-                        1. Submit Shipping Info
-                    </button>
-                </form>
-                
-                <div class="mt-6 pt-4 border-t border-gray-700">
-                    <h4 class="text-lg font-bold text-white mb-3">2. Finalize Payment</h4>
-                    <p class="text-gray-400 mb-3 text-sm">After submitting the form above, click the button below to pay via your preferred method.</p>
-                    
-                    <a href="YOUR_PAYPAL_ME_LINK" target="_blank" class="w-full inline-block text-center py-3 rounded-lg font-bold transition duration-300 bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg text-lg">
-                        Pay $19.99 Now (PayPal/Venmo)
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>  
+      
         <!-- Contact Section --><section id="contact" class="py-20 md:py-28 bg-gray-800"> <!-- Changed bg color for contrast -->
             <div class="container mx-auto px-6 max-w-3xl">
                 <div class="text-center mb-16">
@@ -520,6 +463,65 @@
     </div>
 </section>
 
+    <section id="shop-section" class="py-20 md:py-28 bg-gray-900 border-b border-gray-800">
+    <div class="container mx-auto px-6 max-w-4xl">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-extrabold text-white mb-2">🔥 Mz. Fizzle's Merch Shop</h2>
+            <p class="text-xl text-indigo-400">Limited Edition Gear to Make You FIZZLE!</p>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-10 items-start bg-gray-800 p-8 rounded-xl shadow-2xl">
+            <div class="md:w-1/2">
+                <h3 class="text-3xl font-bold text-white mb-4" id="merch-title">"I'M A BAD TEACHER" Mug</h3>
+                <div class="text-2xl font-extrabold text-indigo-400 mb-6">$19.99 USD</div>
+                
+                <p class="text-gray-300 text-lg mb-6" id="merch-description">
+                    The perfect ceramic mug for your morning tea or evening wine. Featuring the iconic Mz. Fizzle quote. 
+                    Dishwasher safe and guaranteed to make you feel a little naughty. Limited stock available!
+                </p>
+                
+                <div class="bg-gray-700 h-64 w-full rounded-lg flex items-center justify-center">
+                    <span class="text-gray-400 text-sm"></span>
+                </div>
+            </div>
+
+            <div class="md:w-1/2">
+                <h3 class="text-2xl font-bold text-white mb-4">Secure Your Order</h3>
+                <p class="text-red-400 mb-4 text-sm">
+                    ⚠️ **IMPORTANT:** Complete this form first, then click the 'Pay Now' button to finalize your purchase.
+                </p>
+                
+                <form action="https://formspree.io/f/mvgdpzwz" method="POST" class="space-y-4">
+                    <input type="hidden" name="Order_Item" value="Bad Teacher Mug - $19.99">
+                    
+                    <div>
+                        <label for="shipping_name" class="block text-sm font-medium text-gray-300">Name (For Shipping Label)*</label>
+                        <input type="text" name="shipping_name" id="shipping_name" required class="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Your Name">
+                    </div>
+
+                    <div>
+                        <label for="shipping_address" class="block text-sm font-medium text-gray-300">Full Shipping Address*</label>
+                        <textarea name="shipping_address" id="shipping_address" required rows="3" class="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Street, City, State, Zip/Post Code"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-3 rounded-lg font-bold transition duration-300 bg-gray-700 hover:bg-gray-600 text-white shadow-lg">
+                        1. Submit Shipping Info
+                    </button>
+                </form>
+                
+                <div class="mt-6 pt-4 border-t border-gray-700">
+                    <h4 class="text-lg font-bold text-white mb-3">2. Finalize Payment</h4>
+                    <p class="text-gray-400 mb-3 text-sm">After submitting the form above, click the button below to pay via your preferred method.</p>
+                    
+                    <a href="YOUR_PAYPAL_ME_LINK" target="_blank" class="w-full inline-block text-center py-3 rounded-lg font-bold transition duration-300 bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg text-lg">
+                        Pay $19.99 Now (PayPal/Venmo)
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    
     <!-- Footer --><footer class="bg-gray-900 border-t border-gray-700 py-12">
         <div class="container mx-auto px-6 text-center">
             <div class="flex justify-center space-x-6 mb-6">

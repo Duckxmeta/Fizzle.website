@@ -622,12 +622,11 @@
     </script></section> 
 </main>
 <script>
-    // --- POLL DATA ---
-    // Change the question and options daily!
+    // --- DAILY POLL DATA ---
+    // CUSTOMIZE THIS OBJECT WITH YOUR DAILY QUESTION AND OPTIONS
     const dailyPoll = {
         question: "Is Mz. Fizzle the worst influence you know, or the best?",
         options: ["Worst Influence", "Best Influence"]
-        // No 'correctAnswerIndex' needed for a poll
     };
 
     const quizContainer = document.getElementById('quiz-container');
@@ -663,7 +662,7 @@
         document.querySelectorAll('.poll-option').forEach(btn => {
             btn.removeEventListener('click', handleVote);
             btn.disabled = true;
-            btn.classList.add('cursor-default', 'bg-gray-700'); // Style voted state
+            btn.classList.add('cursor-default', 'bg-gray-700');
             btn.classList.remove('hover:bg-indigo-600/50');
         });
 
@@ -678,12 +677,11 @@
         const optionsContainer = document.getElementById('options-container');
         
         // --- PLACEHOLDER POLL RESULTS ---
-        // Change these numbers (55, 45) daily or as needed!
+        // Manually update these numbers (e.g., [60, 40] or [50, 50]) daily 
         const results = [55, 45]; 
         
         optionsContainer.innerHTML = dailyPoll.options.map((option, index) => {
             const result = results[index];
-            const isVoted = index === votedIndex;
             
             return `
                 <div class="relative w-full py-2 px-4 rounded-lg bg-gray-700 overflow-hidden">
@@ -706,6 +704,3 @@
     // Run the poll when the page loads
     renderPoll();
 </script>
-
-</body>
-</html>
